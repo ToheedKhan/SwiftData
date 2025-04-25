@@ -11,6 +11,7 @@
 		91051D072DB8B60E0048274C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91051D062DB8B60E0048274C /* ContentView.swift */; };
 		91051D092DB8B6170048274C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91051D082DB8B6170048274C /* Assets.xcassets */; };
 		91051D0C2DB8B6170048274C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91051D0B2DB8B6170048274C /* Preview Assets.xcassets */; };
+		91B7E1DB2DB91DE000F02FBD /* WishModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B7E1DA2DB91DE000F02FBD /* WishModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		91051D062DB8B60E0048274C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		91051D082DB8B6170048274C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91051D0B2DB8B6170048274C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		91B7E1DA2DB91DE000F02FBD /* WishModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 				91051D042DB8B60E0048274C /* WishlistApp.swift */,
 				91051D062DB8B60E0048274C /* ContentView.swift */,
 				91051D082DB8B6170048274C /* Assets.xcassets */,
+				91B7E1DA2DB91DE000F02FBD /* WishModel.swift */,
 				91051D0A2DB8B6170048274C /* Preview Content */,
 			);
 			path = Wishlist;
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91B7E1DB2DB91DE000F02FBD /* WishModel.swift in Sources */,
 				91051D072DB8B60E0048274C /* ContentView.swift in Sources */,
 				91051D052DB8B60E0048274C /* WishlistApp.swift in Sources */,
 			);
