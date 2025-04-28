@@ -15,15 +15,18 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
+        
             List {
                 ForEach(wishes) { wish in
                     Text(wish.title)
                 }
             } //: LIST
-        }.navigationTitle("Wishlist")
+            .navigationTitle("Wishlist")
+        }
     }
 }
 
 #Preview {
     ContentView()
+        .modelContainer(for: Wish.self, inMemory: true)
 }
