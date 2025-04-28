@@ -13,6 +13,9 @@ struct ContentView: View {
     
     @Query private var wishes: [Wish]
     
+    @State private var isAlertShowing: Bool = false
+    @State private var title: String = ""
+    
     var body: some View {
         NavigationStack {
         
@@ -24,6 +27,27 @@ struct ContentView: View {
                 }
             } //: LIST
             .navigationTitle("Wishlist")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        isAlertShowing.toggle()
+                    } label: {
+                        Image(systemName: "plus")
+                            .imageScale(.large)
+                    }
+                }
+            }
+            .alert("Create New Wish", isPresented: $isAlertShowing) {
+                TextField("Enter a wish", text: $title)
+                
+                Button {
+                    modelContext.insert(Wish(title: title))
+                    title = ""
+                } label: {
+                    Text("Save")
+                }
+            }
+            
             .overlay {
                 if wishes.isEmpty {
                     ContentUnavailableView("My Wishlist",systemImage: "heart.circle", description: Text("No wishes yet. Add one to get started"))
