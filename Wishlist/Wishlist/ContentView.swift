@@ -41,6 +41,11 @@ struct ContentView: View {
                             .imageScale(.large)
                     }
                 }
+                ToolbarItem(placement: .bottomBar) {
+                    if wishes.isEmpty != true {
+                        Text("\(wishes.count) wish\(wishes.count > 1 ? "es" : "")")
+                    }
+                }
             }
             .alert("Create New Wish", isPresented: $isAlertShowing) {
                 TextField("Enter a wish", text: $title)
