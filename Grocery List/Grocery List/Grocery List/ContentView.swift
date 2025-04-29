@@ -75,8 +75,8 @@ struct ContentView: View {
                 VStack {
                     TextField("Enter item", text: $item).textFieldStyle(.roundedBorder)
                     Button {
-                        let item = Item(title: item, isCompleted: false)
-                        modelContext.insert(item)
+                        let newItem = Item(title: item, isCompleted: false)
+                        modelContext.insert(newItem)
                         item = ""
                     } label: {
                        Text("Save")
