@@ -26,6 +26,11 @@ struct ContentView: View {
                 ForEach(items) {
                     item in
                     Text(item.title)
+                        .padding(.vertical, 2)
+                        .font(.title.weight(.light))
+                        .foregroundStyle(item.isCompleted == false ? Color.primary : Color.accentColor)
+                        .strikethrough(item.isCompleted)
+                        .italic(item.isCompleted)
                 }
             }
             .navigationTitle("Grocery List")
