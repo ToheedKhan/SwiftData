@@ -38,7 +38,27 @@ struct ContentView: View {
     }
 }
 
-#Preview {
+#Preview("Sample Date") {
+    let sampleData = [
+        Item(title: "Bakery & Bread", isCompleted: true),
+        Item(title: "Apple", isCompleted: false),
+        Item(title: "Vegetable", isCompleted: .random()),
+        Item(title: "Soap", isCompleted: .random()),
+        Item(title: "Cereals", isCompleted: .random())
+    ]
+    //Container to access the database
+    let container = try! ModelContainer(for: Item.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+    
+    //Insert all asmple data into database
+    
+    for item in sampleData {
+        container.mainContext.insert(item)
+    }
+    
+    return ContentView().modelContainer(container)
+}
+
+#Preview("Empty List") {
     ContentView()
         .modelContainer(for: Item.self, inMemory: true)
 }
