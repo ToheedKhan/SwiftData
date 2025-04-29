@@ -19,6 +19,8 @@ struct ContentView: View {
      */
     @Query private var items: [Item]
     
+    @State private var item: String = ""
+    
     func addEssentialFoods() {
         modelContext.insert(Item(title: "Bakery & Bread", isCompleted:true))
         modelContext.insert(Item(title: "Apple", isCompleted: false))
@@ -68,6 +70,19 @@ struct ContentView: View {
                         Label("Essentials", image: "carrot")
                     }
                 }
+            }
+            .safeAreaInset(edge: .bottom) {
+                VStack {
+                    TextField("Enter item", text: $item).textFieldStyle(.roundedBorder)
+                    Button {
+                        let item = Item(title: item, isCompleted: false)
+                        modelContext.insert(item)
+                        item = ""
+                    } label: {
+                       Text("Save")
+                    }
+                    
+                }.padding()
             }
             .overlay {
                 if items.isEmpty {
