@@ -16,3 +16,8 @@ owning class.
 The external storage attribute stores the property's value as binary data adjacent to the model storage.
 Also, it's worth mentioning that the Pet photo is optional and not mandatory.
 This means users do not need to add a photo each time they create a new pet.
+
+
+## @Bindable
+Bindable property is that we use this property wrapper to create bindings
+to mutable properties of a data model object that conforms to the observable protocol.
