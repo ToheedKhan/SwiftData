@@ -72,17 +72,29 @@ struct ContentView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                VStack {
-                    TextField("Enter item", text: $item).textFieldStyle(.roundedBorder)
+                VStack(spacing: 12) {
+                    TextField("Enter item", text: $item).textFieldStyle(.plain)
+                        .padding(12)
+                        .background(.tertiary)
+                        .cornerRadius(12)
+                        .font(.title.weight(.light))
                     Button {
+                        guard !item.isEmpty else { return }
                         let newItem = Item(title: item, isCompleted: false)
                         modelContext.insert(newItem)
                         item = ""
                     } label: {
                        Text("Save")
+                            .font(.title2.weight(.medium))
+                            .frame(maxWidth: .infinity)
                     }
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.roundedRectangle)
+                    .controlSize(.extraLarge)
                     
-                }.padding()
+                }
+                .padding()
+                .background(.bar)
             }
             .overlay {
                 if items.isEmpty {
