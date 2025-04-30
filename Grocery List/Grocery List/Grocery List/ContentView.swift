@@ -33,6 +33,15 @@ struct ContentView: View {
     
     let buttonTip = ButtonTip()
     
+    func setupTips() {
+        do {
+            try Tips.resetDatastore()
+            Tips.showAllTipsForTesting()
+            try Tips.configure([.displayFrequency(.immediate)])
+        } catch {
+            print("Error initializing Tips: \(error)")
+        }
+    }
     init() {
         //This code will load and configure all tips with the default settings in our app.
         try? Tips.configure()
