@@ -21,6 +21,15 @@ struct ContentView: View {
     
     @State private var item: String = ""
     
+    //Hinding keyboard after clicking on "Save" button
+    /*
+     @FocusState is a property wrapper type that can read and write a value that SwiftUI updates.
+     As.
+     The placement of focus within the scene changes.
+     With this property, we can dismiss the keyboard at the right time.
+     */
+    @FocusState private var isFocused: Bool
+    
     func addEssentialFoods() {
         modelContext.insert(Item(title: "Bakery & Bread", isCompleted:true))
         modelContext.insert(Item(title: "Apple", isCompleted: false))
@@ -67,8 +76,13 @@ struct ContentView: View {
                     Button {
                        addEssentialFoods()
                     } label: {
-                        Label("Essentials", image: "carrot")
+                        Label("Essentials", systemImage: "carrot")
                     }
+                }
+            }
+            .overlay {
+                if items.isEmpty {
+                    ContentUnavailableView("Empty Cart", systemImage: "cart.circle", description: Text("Add some items to the shopping list."))
                 }
             }
             .safeAreaInset(edge: .bottom) {
@@ -78,11 +92,13 @@ struct ContentView: View {
                         .background(.tertiary)
                         .cornerRadius(12)
                         .font(.title.weight(.light))
+                        .focused($isFocused)
                     Button {
                         guard !item.isEmpty else { return }
                         let newItem = Item(title: item, isCompleted: false)
                         modelContext.insert(newItem)
                         item = ""
+                        isFocused = false
                     } label: {
                        Text("Save")
                             .font(.title2.weight(.medium))
@@ -95,11 +111,6 @@ struct ContentView: View {
                 }
                 .padding()
                 .background(.bar)
-            }
-            .overlay {
-                if items.isEmpty {
-                    ContentUnavailableView("Empty Cart", systemImage: "cart.circle", description: Text("Add some items to the shopping list."))
-                }
             }
         }
     }
