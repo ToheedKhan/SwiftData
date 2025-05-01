@@ -9,13 +9,18 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) var  modelcontect
+    @Environment(\.modelContext) var  modelContext
     @Query private var pets: [Pet]
     
     let layout = [
         GridItem(.flexible(minimum: 120)),
         GridItem(.flexible(minimum: 120))
     ]
+    
+    func addPet() {
+        let pet = Pet(name: "Best Friend")
+        modelContext.insert(pet)
+    }
     
     var body: some View {
         NavigationStack {
@@ -56,9 +61,17 @@ struct ContentView: View {
                 .padding(.horizontal)
             } //: SCROLL VIEW
             .navigationTitle(pets.isEmpty ? "" : "Paws")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Add a New Pet", systemImage: "plus.circle", action: addPet)
+                }
+            }
             .overlay {
                 if pets.isEmpty {
-                    CustomContentUnavailableView(icon: "dog.circle", title: "No Pets", description: "Add a new pet to get started.")
+                    CustomContentUnavailableView(
+                        icon: "dog.circle",
+                        title: "No Pets",
+                        description: "Add a new pet to get started.")
                 }
             }
         } //: NAVSTACK
