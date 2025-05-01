@@ -59,7 +59,7 @@ struct EditPetView: View {
                 Text("Save")
                     .font(.title.weight(.light))
                     .padding(8)
-                    .frame(minWidth: 0, maxWidth:  .infinity)
+                    .frame(minWidth: 0, maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
             .listRowSeparator(.hidden)
