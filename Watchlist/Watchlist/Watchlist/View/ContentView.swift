@@ -17,6 +17,17 @@ struct ContentView: View {
     // to store the visibility of the necessary sheet view.
     @State private var isSheetPresented: Bool = false
     
+    //This property will hold the title of a randomly selected movie from the database.
+    @State private var randomMovie: String = ""
+    //to inform the app users about which random movie they can view.
+    @State private var isShowingAlert: Bool = false
+    
+    // MARK: - FUNCTIONS
+    
+    private func randomMovieGenerator() {
+      randomMovie = movies.randomElement()!.title
+    }
+    
     var body: some View {
         List {
             if !movies.isEmpty {
@@ -75,11 +86,31 @@ struct ContentView: View {
         .safeAreaInset(edge: .bottom, alignment: .center){
             
             //NEW MOVIEW BOTTON
-            Button {
-              isSheetPresented.toggle()
-            } label: {
-              ButtonImageView(symbolName: "plus.circle.fill")
+            HStack {
+                if movies.count >= 2 {
+                  // RANDOMIZE BUTTON
+                  Button {
+                    randomMovieGenerator()
+                      isShowingAlert = true
+                  } label: {
+                    ButtonImageView(symbolName: "arrow.trianglehead.2.clockwise.rotate.90.circle.fill")
+                  }
+                  .alert(randomMovie, isPresented: $isShowingAlert) {
+                    Button("OK", role: .cancel) {}
+                  }
+                  .accessibilityLabel("Random Movie")
+                  .sensoryFeedback(.success, trigger: isShowingAlert)
+               
+                  
+                  Spacer()
+                }
+                Button {
+                    isSheetPresented.toggle()
+                } label: {
+                    ButtonImageView(symbolName: "plus.circle.fill")
+                }
             }
+            .padding(.horizontal)
         } //: SAFE AREA
         // MARK: - SHEET
         .sheet(isPresented: $isSheetPresented) {
