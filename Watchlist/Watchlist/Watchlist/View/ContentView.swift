@@ -25,7 +25,7 @@ struct ContentView: View {
     // MARK: - FUNCTIONS
     
     private func randomMovieGenerator() {
-      randomMovie = movies.randomElement()!.title
+        randomMovie = movies.randomElement()!.title
     }
     
     var body: some View {
@@ -33,16 +33,16 @@ struct ContentView: View {
             if !movies.isEmpty {
                 Section(header: VStack {
                     Text("Watchlist")
-                      .font(.largeTitle.weight(.black))
-                      .foregroundStyle(.blue.gradient)
-                      .padding()
+                        .font(.largeTitle.weight(.black))
+                        .foregroundStyle(.blue.gradient)
+                        .padding()
                     
                     HStack {
-                      Label("Title", systemImage: "movieclapper")
-                      Spacer()
-                      Label("Genre", systemImage: "tag")
+                        Label("Title", systemImage: "movieclapper")
+                        Spacer()
+                        Label("Genre", systemImage: "tag")
                     }
-                  }) {
+                }) {
                     ForEach(movies) { movie in
                         HStack  {
                             Text(movie.title)
@@ -56,8 +56,8 @@ struct ContentView: View {
                                 .padding(.horizontal, 6)
                                 .padding(.vertical, 3)
                                 .background(
-                                  Capsule()
-                                    .stroke(lineWidth: 1)
+                                    Capsule()
+                                        .stroke(lineWidth: 1)
                                 )
                                 .foregroundStyle(.tertiary)
                         } //: LIST ROW
@@ -86,21 +86,21 @@ struct ContentView: View {
         .safeAreaInset(edge: .bottom, alignment: .center){
             HStack {
                 if movies.count >= 2 {
-                  // RANDOMIZE BUTTON
-                  Button {
-                    randomMovieGenerator()
-                      isShowingAlert = true
-                  } label: {
-                    ButtonImageView(symbolName: "arrow.trianglehead.2.clockwise.rotate.90.circle.fill")
-                  }
-                  .alert(randomMovie, isPresented: $isShowingAlert) {
-                    Button("OK", role: .cancel) {}
-                  }
-                  .accessibilityLabel("Random Movie")
-                  .sensoryFeedback(.success, trigger: isShowingAlert)
-               
-                  
-                  Spacer()
+                    // RANDOMIZE BUTTON
+                    Button {
+                        randomMovieGenerator()
+                        isShowingAlert = true
+                    } label: {
+                        ButtonImageView(symbolName: "arrow.trianglehead.2.clockwise.rotate.90.circle.fill")
+                    }
+                    .alert(randomMovie, isPresented: $isShowingAlert) {
+                        Button("OK", role: .cancel) {}
+                    }
+                    .accessibilityLabel("Random Movie")
+                    .sensoryFeedback(.success, trigger: isShowingAlert)
+                    
+                    
+                    Spacer()
                 }
                 //NEW MOVIE BUTTON
                 Button {
@@ -109,19 +109,20 @@ struct ContentView: View {
                     ButtonImageView(symbolName: "plus.circle.fill")
                 }
                 .accessibilityLabel("New Movie")
+                .sensoryFeedback(.success, trigger: isSheetPresented)
             }
             .padding(.horizontal)
         } //: SAFE AREA
         // MARK: - SHEET
         .sheet(isPresented: $isSheetPresented) {
-          NewMovieFormView()
+            NewMovieFormView()
         }
     }
 }
 
 #Preview("Sample Data") {
-  ContentView()
-    .modelContainer(Movie.preview)
+    ContentView()
+        .modelContainer(Movie.preview)
 }
 
 #Preview("Empty List") {
