@@ -7,7 +7,7 @@
 
 import SwiftUI
 /*
-import SwiftData
+ import SwiftData
  
  *** NO NEED TO IMPORT ***
  
@@ -21,7 +21,7 @@ struct NewMovieFromView: View {
     @Environment(\.modelContext) var modelContext
     //This property provide us special method "dismiss()"
     @Environment(\.dismiss) var dismiss
-
+    
     
     @State private var title: String = ""
     @State private var selectedGenre: Genre = .kids
