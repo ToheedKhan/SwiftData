@@ -27,6 +27,16 @@ struct ContentView: View {
                     
                     Text(movie.genre.name)
                 } //: LIST ROW
+                //Delete Action
+                .swipeActions {
+                  Button(role: .destructive) {
+                    withAnimation {
+                      modelContext.delete(movie)
+                    }
+                  } label: {
+                    Label("Delete", systemImage: "trash")
+                  }
+                }
             } //: LOOP
         } //: LIST
         
