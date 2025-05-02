@@ -6,14 +6,36 @@
 //
 
 import SwiftUI
+/*
 import SwiftData
+ 
+ *** NO NEED TO IMPORT ***
+ 
+ Since we are embedding Form view into a sheet, therefore we do not need to import it in this child
+ view.
+ */
 
 struct NewMovieFromView: View {
     // MARK: - PROPERTIES
     
+    @Environment(\.modelContext) var modelContext
+    //This property provide us special method "dismiss()"
+    @Environment(\.dismiss) var dismiss
+
+    
     @State private var title: String = ""
     @State private var selectedGenre: Genre = .kids
     
+    // MARK: - FUNCTIONS
+    
+    private func addNewMovie() {
+        let newMovie = Movie(title: title, genre: selectedGenre)
+        modelContext.insert(newMovie)
+        
+        //reset the values of the text field and the picker.
+        title = ""
+        selectedGenre = .kids
+    }
     
     var body: some View {
         Form {
@@ -40,7 +62,8 @@ struct NewMovieFromView: View {
                 
                 // MARK: - SAVE BUTTON
                 Button {
-                    
+                    addNewMovie()
+                    dismiss()
                 } label: {
                     Text("Save")
                         .font(.title2.weight(.medium))
@@ -52,7 +75,7 @@ struct NewMovieFromView: View {
                 
                 // MARK: - CANCEL BUTTON
                 Button {
-                    
+                    dismiss()
                 } label: {
                     Text("Close")
                         .frame(maxWidth: .infinity)
