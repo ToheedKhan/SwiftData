@@ -19,23 +19,38 @@ struct ContentView: View {
     
     var body: some View {
         List {
-            ForEach(movies) { movie in
-                HStack  {
-                    Text(movie.title)
+            if !movies.isEmpty {
+                Section(header: VStack {
+                    Text("Watchlist")
+                      .font(.largeTitle.weight(.black))
+                      .foregroundStyle(.blue.gradient)
+                      .padding()
                     
-                    Spacer()
-                    
-                    Text(movie.genre.name)
-                } //: LIST ROW
-                //Delete Action
-                .swipeActions {
-                  Button(role: .destructive) {
-                    withAnimation {
-                      modelContext.delete(movie)
+                    HStack {
+                      Label("Title", systemImage: "movieclapper")
+                      Spacer()
+                      Label("Genre", systemImage: "tag")
                     }
-                  } label: {
-                    Label("Delete", systemImage: "trash")
-                  }
+                  }) {
+                    ForEach(movies) { movie in
+                        HStack  {
+                            Text(movie.title)
+                            
+                            Spacer()
+                            
+                            Text(movie.genre.name)
+                        } //: LIST ROW
+                        //Delete Action
+                        .swipeActions {
+                            Button(role: .destructive) {
+                                withAnimation {
+                                    modelContext.delete(movie)
+                                }
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
+                    }
                 }
             } //: LOOP
         } //: LIST
