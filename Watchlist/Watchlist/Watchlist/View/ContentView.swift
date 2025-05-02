@@ -84,8 +84,6 @@ struct ContentView: View {
         
         //  MARK: SAFE AREA
         .safeAreaInset(edge: .bottom, alignment: .center){
-            
-            //NEW MOVIEW BOTTON
             HStack {
                 if movies.count >= 2 {
                   // RANDOMIZE BUTTON
@@ -104,11 +102,13 @@ struct ContentView: View {
                   
                   Spacer()
                 }
+                //NEW MOVIE BUTTON
                 Button {
                     isSheetPresented.toggle()
                 } label: {
                     ButtonImageView(symbolName: "plus.circle.fill")
                 }
+                .accessibilityLabel("New Movie")
             }
             .padding(.horizontal)
         } //: SAFE AREA
