@@ -37,8 +37,11 @@ struct ContentView: View {
             } label: {
               ButtonImageView(symbolName: "plus.circle.fill")
             }
-            
         } //: SAFE AREA
+        // MARK: - SHEET
+        .sheet(isPresented: $isSheetPresented) {
+          NewMovieFormView()
+        }
     }
 }
 

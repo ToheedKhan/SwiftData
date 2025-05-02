@@ -1,5 +1,5 @@
 //
-//  NewMovieFromView.swift
+//  NewMovieFormView.swift
 //  Watchlist
 //
 //  Created by Toheed Khan on 02/05/25.
@@ -15,7 +15,7 @@ import SwiftUI
  view.
  */
 
-struct NewMovieFromView: View {
+struct NewMovieFormView: View {
     // MARK: - PROPERTIES
     
     @Environment(\.modelContext) var modelContext
@@ -88,5 +88,5 @@ struct NewMovieFromView: View {
 }
 
 #Preview {
-    NewMovieFromView()
+    NewMovieFormView()
 }
