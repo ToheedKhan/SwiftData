@@ -7,7 +7,7 @@
 
 import Foundation
 /*
- W can use enumeration with Swift data, as long as it
+ We can use enumeration with Swift data, as long as it
  conforms to the Codable protocol.
  This works even if the enums have raw or associated values.
  */
