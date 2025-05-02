@@ -14,15 +14,31 @@ struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @Query private var movies: [Movie]
     
+    // to store the visibility of the necessary sheet view.
+    @State private var isSheetPresented: Bool = false
+    
     var body: some View {
         List {
             
         } //: LIST
+        
         .overlay {
             if movies.isEmpty {
                 EmptyListView()
             }
-        }
+        } //: OVERLAY
+        
+        //  MARK: SAFE AREA
+        .safeAreaInset(edge: .bottom, alignment: .center){
+            
+            //NEW MOVIEW BOTTON
+            Button {
+              isSheetPresented.toggle()
+            } label: {
+              ButtonImageView(symbolName: "plus.circle.fill")
+            }
+            
+        } //: SAFE AREA
     }
 }
 
