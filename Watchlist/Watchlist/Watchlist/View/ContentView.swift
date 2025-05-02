@@ -19,7 +19,15 @@ struct ContentView: View {
     
     var body: some View {
         List {
-            
+            ForEach(movies) { movie in
+                HStack  {
+                    Text(movie.title)
+                    
+                    Spacer()
+                    
+                    Text(movie.genre.name)
+                } //: LIST ROW
+            } //: LOOP
         } //: LIST
         
         .overlay {
@@ -43,6 +51,11 @@ struct ContentView: View {
           NewMovieFormView()
         }
     }
+}
+
+#Preview("Sample Data") {
+  ContentView()
+    .modelContainer(Movie.preview)
 }
 
 #Preview("Empty List") {
